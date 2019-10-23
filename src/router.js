@@ -14,6 +14,16 @@ export default new Router({
       component: Home
     },
     {
+      path: '/canvas',
+      name: 'canvas',
+      component: () => import('./views/Canvas.vue')
+    },
+    {
+      path: '/fabric',
+      name: 'fabric',
+      component: () => import('./views/Fabric.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
