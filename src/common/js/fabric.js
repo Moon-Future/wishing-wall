@@ -15,6 +15,12 @@ export default function FabricUtil() {
   this.paperList = notepaperList;
   this.content = '请保佑我的女儿抵抗力提高，扁桃体不要再生病了，不要感冒、不要咳嗽，不要 再生所有的病，身体永远健康！！！请保佑老公赚很多钱，生活无忧！！！诚心 祈愿！！！很多钱，生活无忧！！！诚心 祈愿！！！诚心 祈愿';
   // this.content = '恭喜发财！！'
+  this.minLeft = 120;
+  this.minTop = 120;
+  this.maxLfet = this.width / 0.5 - 120;
+  this.maxTop = this.height / 0.5 - 120;
+  this.diffLeft = this.maxLfet - this.minLeft;
+  this.diffTop = this.maxTop - this.minTop;
 
   this.init();
 }
@@ -29,15 +35,16 @@ fabric.Canvas.prototype.getAbsoluteCoords = function (object) {
 FabricUtil.prototype = {
   init() {
     const self = this;
-    // this.imgElement.onload = function () {
-    //   self.draw(this.width / this.scale, this.height / this.scale, this.scale);
-    // }
     self.draw(this.width / this.scale, this.height / this.scale, this.scale);
     this.canvasEvent();
   },
   draw() {
-    // this.drawRect();
-    this.drawImage(6);
+    for (let i = 0, len = 20; i < len; i++) {
+      var index = this.random(0, 11);
+      this.drawImage(index);
+    }
+    this.drawImage(0);
+    this.canvas.zoomToPoint({x:0, y:0}, 0.5);
   },
   drawLine(x1, y1, x2, y2, color) {
     this.ctx.strokeStyle = color;
@@ -57,13 +64,13 @@ FabricUtil.prototype = {
     let self = this;
     let content, arr = [];
     let params = self.paperList[index];
-    console.log(this.content.length);
+    let pos = this.positionRandom();
     for (let i = 0; i < this.content.length; i += params.substrLen) {
       arr.push(this.content.substr(i, params.substrLen))
     }
     content = arr.join('\n');
 
-    fabric.Image.fromURL(self.baseUrl + params.img, function(img) {
+    fabric.Image.fromURL(self.baseUrl + params.img, function (img) {
       img.scale(params.scale);
       let text = new fabric.Text(content, {
         fontSize: 16,
@@ -89,35 +96,22 @@ FabricUtil.prototype = {
         originX: 'center',
         originY: 'center'
       });
-      let group = new fabric.Group([ img, text, name, time ], {
-        left: 200,
-        top: 200,
+      let group = new fabric.Group([img, text, name, time], {
+        left: pos.left,
+        top: pos.top,
         hasControls: false,
         hasBorders: false
       }).scale(params.groupScale || 0.6);
       self.canvas.add(group);
     })
-    return;
-    this.positionDom(imgInstance, this.createText());
-    imgInstance.on('moving', function () {
-      self.positionDom(imgInstance, self.createText())
-    });
-    imgInstance.on('scaling', function () {
-      self.positionDom(imgInstance, self.createText())
-    });
   },
-  positionDom(obj, dom) {
-    let absCoords = this.canvas.getAbsoluteCoords(obj);
-    dom.style.left = (absCoords.left - 80 / 2) + 'px';
-    dom.style.top = (absCoords.top - 80 / 2) + 'px';
+  positionRandom() {
+    let left = this.minLeft + this.random(1, this.diffLeft);
+    let top = this.minTop + this.random(1, this.diffTop);
+    return {left, top}
   },
-  createText() {
-    // let p = document.createElement('p');
-    // p.textContent = 'chenliang';
-    // p.className = 'wish-word';
-    // document.body.appendChild(p);
-    let p = document.getElementById('wishWord');
-    return p;
+  random(frm, to) {
+    return Math.floor((Math.random() * to) + frm);
   },
   canvasEvent() {
     let self = this, timeout = null;
@@ -145,7 +139,7 @@ FabricUtil.prototype = {
         let delta = opt.e.deltaY > 0 ? 10 : -10;
         let pointer = self.canvas.getPointer(opt.e);
         let zoom = self.canvas.getZoom();
-        zoom = zoom + delta / 200;
+        zoom = zoom + delta / 100;
         if (zoom > 2) zoom = 2;
         if (zoom < 0.05) zoom = 0.05;
         self.canvas.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);

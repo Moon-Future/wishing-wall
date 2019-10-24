@@ -57,55 +57,56 @@ export const notepaperList = [
   {
     img: 'note-3.png',
     scale: 0.9,
-    contentTop: 0,
+    contentTop: -25,
+    angle: 18,
     nameTop: 120,
     groupScale: 0.6,
-    substrLen: 10,
+    substrLen: 12,
     maxLen: 100
   },
   {
     img: 'note-4.png',
-    scale: 0.6,
-    contentTop: 0,
-    nameTop: 120,
+    scale: 0.9,
+    contentTop: -40,
+    nameTop: 140,
     groupScale: 0.6,
-    substrLen: 10,
+    substrLen: 15,
     maxLen: 100
   },
   {
     img: 'note-5.png',
-    scale: 0.6,
-    contentTop: 0,
-    nameTop: 120,
+    scale: 0.9,
+    contentTop: -30,
+    nameTop: 150,
     groupScale: 0.6,
-    substrLen: 10,
+    substrLen: 15,
     maxLen: 100
   },
   {
     img: 'note-6.png',
-    scale: 0.6,
-    contentTop: 0,
+    scale: 0.9,
+    contentTop: -30,
     nameTop: 120,
     groupScale: 0.6,
-    substrLen: 10,
+    substrLen: 15,
     maxLen: 100
   },
   {
     img: 'note-7.png',
-    scale: 0.6,
-    contentTop: 0,
+    scale: 0.9,
+    contentTop: -25,
     nameTop: 120,
     groupScale: 0.6,
-    substrLen: 10,
+    substrLen: 15,
     maxLen: 100
   },
   {
     img: 'note-8.png',
-    scale: 0.6,
-    contentTop: 0,
+    scale: 0.9,
+    contentTop: -20,
     nameTop: 120,
     groupScale: 0.6,
-    substrLen: 10,
+    substrLen: 14,
     maxLen: 100
   }
 ];
