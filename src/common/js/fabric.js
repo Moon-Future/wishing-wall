@@ -10,6 +10,7 @@ export default function FabricUtil() {
   this.ctx = this.canvas.getContext('2d');
   this.width = window.innerWidth;
   this.height = window.innerHeight;
+  this.zoom = 1;
   this.imgElement = document.getElementById('img');
   this.baseUrl = 'https://wish-wall-1255423800.cos.ap-guangzhou.myqcloud.com/';
   this.paperList = notepaperList;
@@ -17,8 +18,8 @@ export default function FabricUtil() {
   // this.content = '恭喜发财！！'
   this.minLeft = 120;
   this.minTop = 120;
-  this.maxLfet = this.width / 0.5 - 120;
-  this.maxTop = this.height / 0.5 - 120;
+  this.maxLfet = this.width / this.zoom - 120;
+  this.maxTop = this.height / this.zoom - 120;
   this.diffLeft = this.maxLfet - this.minLeft;
   this.diffTop = this.maxTop - this.minTop;
 
@@ -35,7 +36,7 @@ fabric.Canvas.prototype.getAbsoluteCoords = function (object) {
 FabricUtil.prototype = {
   init() {
     const self = this;
-    self.draw(this.width / this.scale, this.height / this.scale, this.scale);
+    self.draw();
     this.canvasEvent();
   },
   draw() {
@@ -44,7 +45,7 @@ FabricUtil.prototype = {
       this.drawImage(index);
     }
     this.drawImage(0);
-    this.canvas.zoomToPoint({x:0, y:0}, 0.5);
+    this.canvas.zoomToPoint({x:0, y:0}, this.zoom);
   },
   drawLine(x1, y1, x2, y2, color) {
     this.ctx.strokeStyle = color;
@@ -74,6 +75,7 @@ FabricUtil.prototype = {
       img.scale(params.scale);
       let text = new fabric.Text(content, {
         fontSize: 16,
+        fontFamily: 'Pacifico',
         lineHeight: params.lineHeight || 1.5,
         top: params.contentTop,
         textAlign: 'left',
@@ -83,7 +85,7 @@ FabricUtil.prototype = {
       });
       let name = new fabric.Text('来自柔佛的许瑞鸿瑞鸿', {
         fontSize: 16,
-        lineHeight: 2,
+        fontFamily: 'Times New Roman',
         top: params.nameTop,
         stroke: '#3e64ff',
         originX: 'center',
