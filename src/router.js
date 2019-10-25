@@ -24,6 +24,11 @@ export default new Router({
       component: () => import('./views/Fabric.vue')
     },
     {
+      path: '/jquery',
+      name: 'jquery',
+      component: () => import('./views/Jquery.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
