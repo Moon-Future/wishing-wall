@@ -14,7 +14,7 @@ export default function FabricUtil() {
   this.zoom = 1;
   this.minZoom = 1;
   this.maxZoom = 4;
-  this.maxShow = 50;
+  this.maxShow = 100;
   this.gridLength = 20;
   this.baseUrl = 'https://wish-wall-1255423800.cos.ap-guangzhou.myqcloud.com/';
   this.paperList = notepaperList;
@@ -22,8 +22,8 @@ export default function FabricUtil() {
   // this.content = '恭喜发财！！'
   this.minLeft = 120;
   this.minTop = 120;
-  this.maxLfet = this.width / this.zoom - 120;
-  this.maxTop = this.height / this.zoom - 120;
+  this.maxLfet = this.width / this.zoom - 80;
+  this.maxTop = this.height / this.zoom - 100;
   this.diffLeft = this.maxLfet - this.minLeft;
   this.diffTop = this.maxTop - this.minTop;
 
@@ -145,8 +145,8 @@ FabricUtil.prototype = {
         textAlign: 'left',
         originX: 'center',
         originY: 'center',
-        angle: params.angle
-      });
+        angle: params.angle,
+      }).scale(params.textScale || 1);
       let name = new fabric.Text('来自柔佛的许瑞鸿瑞鸿', {
         fontSize: 16,
         fontFamily: 'Times New Roman',
@@ -154,22 +154,22 @@ FabricUtil.prototype = {
         stroke: '#3e64ff',
         originX: 'center',
         originY: 'center'
-      });
+      }).scale(params.textScale || 1);
       let time = new fabric.Text('2019.10.24 23:15', {
         fontSize: 16,
         lineHeight: 2,
-        top: params.nameTop + 25,
+        top: params.nameTop + 8,
         originX: 'center',
         originY: 'center'
-      });
+      }).scale(params.textScale || 1);
       let group = new fabric.Group([img, text, name, time], {
         left: pos.left,
         top: pos.top,
         hasControls: false,
         objectCaching: false,
-        evented: false
+        // evented: false
         // hasBorders: false
-      }).scale(params.groupScale || 0.6);
+      }).scale(2 || params.groupScale || 0.6);
       self.canvas.add(group);
     })
   },

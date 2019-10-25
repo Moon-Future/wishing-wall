@@ -37,6 +37,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.wish-wall-container {
+  height: 100%;
+  background: url('../assets/wall-1.png') repeat;
+}
 .wish-item {
   position: absolute;
   .wish-note {
