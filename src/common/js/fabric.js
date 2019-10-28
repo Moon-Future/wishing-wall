@@ -1,4 +1,4 @@
-import { notepaperList } from './notelist';
+import { notepaperList1 } from './notelist';
 
 export default function FabricUtil() {
   this.width = window.innerWidth;
@@ -17,9 +17,9 @@ export default function FabricUtil() {
   this.maxShow = 100;
   this.gridLength = 20;
   this.baseUrl = 'https://wish-wall-1255423800.cos.ap-guangzhou.myqcloud.com/';
-  this.paperList = notepaperList;
+  this.paperList = notepaperList1;
   this.content = '请保佑我的女儿抵抗力提高，扁桃体不要再生病了，不要感冒、不要咳嗽，不要 再生所有的病，身体永远健康！！！请保佑老公赚很多钱，生活无忧！！！诚心 祈愿！！！很多钱，生活无忧！！！诚心 祈愿！！！诚心 祈愿';
-  // this.content = '恭喜发财！！'
+  this.content = '恭喜发财！！女儿无忧！！！诚心 祈愿！！！诚心 祈愿'
   this.minLeft = 120;
   this.minTop = 120;
   this.maxLfet = this.width / this.zoom - 80;
